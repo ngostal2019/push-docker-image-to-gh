@@ -11,15 +11,15 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: checkout repository
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             - name: Login to ghcr.io
-              uses: docker/login-action@v2
+              uses: docker/login-action@v3
               with:
                 registry: ghcr.io
                 username: ${{ github.actor }}
                 password: ${{ secrets.GITHUB_TOKEN }}
-            - name: Build container image
+            - name: Build container image and push to GH
               run: |
                 docker build . --tag ghcr.io/ngostal2019/flask-time:latest
                 docker run -d -p 8080:5000 --name flask-app ghcr.io/ngostal2019/flask-time:latest

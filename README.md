@@ -1,0 +1,1 @@
+[![Build & Push To GH](https://github.com/ngostal2019/push-docker-image-to-gh/actions/workflows/build_images.yaml/badge.svg)](https://github.com/ngostal2019/push-docker-image-to-gh/actions/workflows/build_images.yaml)

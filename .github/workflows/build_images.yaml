@@ -1,6 +1,10 @@
 name: Build & Push To GH
 
 on: [ push ]
+permissions:
+  actions: read
+  contents: read
+  packages: write
 
 jobs:
     build_and_push_to_github:
@@ -14,7 +18,7 @@ jobs:
               with:
                 registry: ghcr.io
                 username: ${{ github.actor }}
-                password: ${{ secrets.GHCR_PAT }}
+                password: ${{ secrets.GITHUB_TOKEN }}
             - name: Build container image
               run: |
                 docker build . --tag ghcr.io/ngostal2019/flask-time:latest

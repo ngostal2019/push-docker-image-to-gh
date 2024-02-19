@@ -18,5 +18,5 @@ jobs:
             - name: Build container image
               run: |
                 docker build . --tag ghcr.io/ngostal2019/flask-time:latest
-                docker run -it--rm -p 8080:5000 --name flask-app ghcr.io/ngostal2019/flask-time:latest
+                docker run -it --rm -p 8080:5000 --name flask-app ghcr.io/ngostal2019/flask-time:latest
                 docker push ghcr.io/ngostal2019/flask-time:latest

@@ -1,0 +1,22 @@
+name: Build & Push To GH
+
+on: [ push ]
+
+jobs:
+    build_and_push_to_github:
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout repository
+              uses: actions/checkout@v3
+
+            - name: Login to ghcr.io
+              uses: docker/login-action@v2
+              with:
+                registry: ghcr.io
+                username: ${{ github.actor }}
+                password: ${{ secrets.GITHUB_TOKEN }}
+            - name: Build container image
+              run: |
+                docker build . --tag ghcr.io/ngostal2019/flask-time:latest
+                docker run -it--rm -p 8080:5000 --name flask-app ghcr.io/ngostal2019/flask-time:latest
+                docker push ghcr.io/ngostal2019/flask-time:latest
